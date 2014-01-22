@@ -3,16 +3,12 @@ ChromiumWebView
 
 Android WebView wrapper based on chromium
 
-## Why you need
+## Android Studio Fork
 
-The current performance of Android webview is so poor. ChromiumWebView gives your 
-application early access to the newest features in Chromium, and removes the
-variability due to different WebView implementations in different versions of
-Android.
+This is the [Chromium Webview project](https://github.com/mojoweb/chromium_webview)
+with the library component converted to Gradle.
 
-Inspired by [ChromeView project](https://github.com/pwnall/chromeview), our 
-goal is to provide full Android WebKit compatible API, so the web apps or 
-hybrid apps can easily immigrate to chromium. 
+Gradle tools 0.7.3 is required for its halfassed ndk support.
 
 ## Setting Up
 
@@ -20,16 +16,15 @@ This section explains how to set up your Android project to use ChromiumWebView.
 
 ### Get the Code
 
-Check out the repository in your Eclipse workspace, and make your project use 
-ChromiumWebView as a library. In Eclipse, right-click your project directory, 
-select `Properties`, choose the `Android` category, and click on the `Add` button 
-in the `Library` section.
+Add the "java" directory (feel free to rename) to your project as a module dependency.
+Since AS isn't very good at importing I would copy the directory over and modify
+settings.gradle to include it.
 
 ### Copy Data
 
-Copy `assets/webviewchromium.pak` to your project's `assets` directory. [Star 
-this bug](https://code.google.com/p/android/issues/detail?id=35748) if you 
-agree that this is annoying.
+Copy `assets/webviewchromium.pak` to your project's `src/main/assets` directory. Also copy the
+src/main/jniLibs directory to your main app project since that doesn't work automatically
+in gradle tools 0.7.3.
 
 ### Initialize
 
@@ -51,11 +46,6 @@ public class MyApplication extends Application {
 
 Now you can use ChromiumWebView as the same as Android WebView except for different
 package name.
-
-### TestShell
-
-There is a sample project to illustrate the usage of ChromiumWebView
-in the test folder. It is only a shell program that can navigate website.
 
 ### Copyright and License
 
